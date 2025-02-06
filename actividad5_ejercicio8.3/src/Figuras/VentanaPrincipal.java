@@ -30,7 +30,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         esfera = new javax.swing.JButton();
         piramide = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cilindro.setText("Cilindro");
         cilindro.addActionListener(new java.awt.event.ActionListener() {

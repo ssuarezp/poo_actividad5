@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Figuras;
-
+import javax.swing.JOptionPane;
 /**
  *
  * @author EstudianteAuxiliar
@@ -26,21 +26,115 @@ public class VentanaPiramide extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        base = new javax.swing.JLabel();
+        altura = new javax.swing.JLabel();
+        apotema = new javax.swing.JLabel();
+        campoBase = new javax.swing.JTextField();
+        campoAltura = new javax.swing.JTextField();
+        campoApotema = new javax.swing.JTextField();
+        calcular = new javax.swing.JButton();
+        volumen = new javax.swing.JLabel();
+        superficie = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Piramide");
+
+        base.setText("Base (cm:)");
+
+        altura.setText("Altura (cm):");
+
+        apotema.setText("Apotema (cms):");
+
+        calcular.setText("Calcular");
+        calcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calcularActionPerformed(evt);
+            }
+        });
+
+        volumen.setText("jLabel4");
+
+        superficie.setText("jLabel5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(superficie)
+                    .addComponent(volumen)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(base)
+                            .addComponent(altura)
+                            .addComponent(apotema))
+                        .addGap(72, 72, 72)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(calcular)
+                            .addComponent(campoBase, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                            .addComponent(campoAltura)
+                            .addComponent(campoApotema))))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(base)
+                    .addComponent(campoBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(altura)
+                    .addComponent(campoAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(apotema)
+                    .addComponent(campoApotema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(calcular)
+                .addGap(18, 18, 18)
+                .addComponent(volumen)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(superficie)
+                .addGap(25, 25, 25))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcularActionPerformed
+        // TODO add your handling code here:
+        
+        Piramide piramide;
+        boolean error = false;
+        double base = 0;
+        double altura = 0;
+        double apotema = 0;
+        try {
+            // Se obtiene y convierte el valor numérico de la base
+            base = Double.parseDouble(campoBase.getText());
+            // Se obtiene y convierte el valor numérico de la altura
+            altura = Double.parseDouble(campoAltura.getText());
+            // Se obtiene y convierte el valor numérico del apotema
+            apotema = Double.parseDouble(campoApotema.getText());
+            // Se crea un objeto Pirámide
+            piramide = new Piramide(base, altura, apotema);
+            // Se muestra el volumen
+            volumen.setText("Volumen (cm3): " + String.format("%.2f", piramide.calcularVolumen()));
+            // Se muestra la superficie
+            superficie.setText("Superficie (cm2): " + String.format("%.2f", piramide.calcularSuperficie()));
+        } catch (Exception e) {
+            error = true; // Si ocurre una excepción
+        } finally {
+            if (error) { /* Si ocurre una excepción, se muestra un mensaje 
+            de error */
+            JOptionPane.showMessageDialog(null, "Campo nulo o error en formato de número", "Error",JOptionPane.ERROR_MESSAGE);
+            }
+        } 
+    }//GEN-LAST:event_calcularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +172,14 @@ public class VentanaPiramide extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel altura;
+    private javax.swing.JLabel apotema;
+    private javax.swing.JLabel base;
+    private javax.swing.JButton calcular;
+    private javax.swing.JTextField campoAltura;
+    private javax.swing.JTextField campoApotema;
+    private javax.swing.JTextField campoBase;
+    private javax.swing.JLabel superficie;
+    private javax.swing.JLabel volumen;
     // End of variables declaration//GEN-END:variables
 }
